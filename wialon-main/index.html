@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <title>Wialon Playground - Execute custom report</title>
-    <script type="text/javascript" src="//code.jquery.com/jquery-latest.min.js"></script>
-    <script type="text/javascript" src="//hst-api.wialon.com/wsdk/script/wialon.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="https://hst-api.wialon.com/wsdk/script/wialon.js"></script>
 </head>
 <body>
 <style>
@@ -165,7 +165,8 @@ function executeReport() {
         var resId = res.getId();
 
         // Fetch all units for the current resource
-        var units = res.getUnits();
+        var units = sess.getItems("avl_unit");
+    
 
         // Specify time interval object
         var to = sess.getServerTime();
@@ -179,6 +180,15 @@ function executeReport() {
         // Loop through units and execute the report
         for (var j = 0; j < units.length; j++) {
             var id_unit = units[j].getId();
+
+            function getColumsString () {
+             return ;
+             }
+             function getColumnsLabelsString (cl) {
+             return "col";
+             }
+
+             console.log(getColumsString)
 
             var template = {
                 "id": 0,
@@ -205,6 +215,8 @@ function executeReport() {
                     "f": 0
                 }]
             };
+            console.log()
+
 
             res.execReport(template, id_unit, 0, interval, function (code, data) {
                 if (code) {
@@ -272,7 +284,7 @@ function showReportResult(result) {
             this,
             html
         );
-    }
+    } console.log()
 }
 
 function findRankIndex(headers) {
